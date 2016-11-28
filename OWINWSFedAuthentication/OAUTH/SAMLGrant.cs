@@ -55,8 +55,6 @@ namespace OAuth2SAMLGrant.OAUTH
             }
 
 
-            //JRE 7-11-2015: Changed code to store BOOTSTRAP token in a claim on the user principle
-            //string saml2Token = Convert.ToBase64String(Encoding.UTF8.GetBytes(WSFed_Owin_MVC_Startup.saml2Token));
             string saml2Token = Convert.ToBase64String(Encoding.UTF8.GetBytes(samlToken));
             string postData = Payload +
                               saml2Token;
