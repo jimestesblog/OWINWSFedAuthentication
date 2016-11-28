@@ -34,16 +34,11 @@ namespace OAuth2SAMLGrant
 
         private bool IsRefreshTokenValid(OAuthGrantRefreshTokenContext context)
         {
-            //var claim = context.Ticket.Identity.FindFirst(COPClaimTypes.RefreshTokenIdClaim);
-            //if (claim != null && claim.Value != null)
-            //{
-            //    var provider = COPStorageProviderFactory.getStorageProvider();
-            //    var token = provider.GetRefreshToken(claim.Value);
-            //    if (token != null)
-            //        return true;
-            //}
+           
+            //TODO: Implement Sigle use refresh token.
+            
 
-            return false;
+            return true;
 
         }
 
@@ -56,12 +51,12 @@ namespace OAuth2SAMLGrant
             //decode base64 string
             string assertion = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(encAssertion));
 
-            SAML.TokenValidator smv = new SAML.TokenValidator();
+            SAML.TokenValidator samlValidator = new SAML.TokenValidator();
             ClaimsIdentity cid = new ClaimsIdentity();
             try
             {
 
-                cid = smv.DecryptAndValidate(assertion);
+                cid = samlValidator.DecryptAndValidate(assertion);
                 context.Validated(cid);
             }
             catch (System.Security.SecurityException secEx)

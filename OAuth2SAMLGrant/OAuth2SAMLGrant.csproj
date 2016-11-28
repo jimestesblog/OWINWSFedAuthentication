@@ -93,10 +93,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Claims\CustomTypes.cs" />
     <Compile Include="Helpers\X509Certificates.cs" />
     <Compile Include="Model\OAuthToken.cs" />
     <Compile Include="OAuthSAML2GrantFlowProvider.cs" />
-    <Compile Include="SAMLOAuthAuthorizationServerOptions.cs" />
+    <Compile Include="OAuthSAML2AuthorizationServerOptions.cs" />
+    <Compile Include="OAuthSAML2RefreshTokenProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SAML\TokenValidator.cs" />
   </ItemGroup>
