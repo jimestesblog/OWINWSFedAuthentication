@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace OAuth2SAMLGrant
 {
-    public class SAMLOAuthAuthorizationServerOptions : OAuthAuthorizationServerOptions
+    public class OAuthSAML2AuthorizationServerOptions : OAuthAuthorizationServerOptions
     {
         static string _accessTokenExpire = System.Configuration.ConfigurationManager.AppSettings["ACCESSTOKENEXPIREMIN"];
         static string _allowInsecureHttp = System.Configuration.ConfigurationManager.AppSettings["ALLOWINSECUREHTTP"];
-        public SAMLOAuthAuthorizationServerOptions(Func<OAuthTokenEndpointContext, System.Threading.Tasks.Task> addclaims, bool refreshTokens = false)
+        public OAuthSAML2AuthorizationServerOptions(Func<OAuthTokenEndpointContext, System.Threading.Tasks.Task> addclaims, bool refreshTokens = false)
         {
             TokenEndpointPath = new PathString("/oauth/token");
             Provider = new OAuthSAML2GrantFlowProvider()
@@ -27,7 +27,7 @@ namespace OAuth2SAMLGrant
             }
         }
 
-        public SAMLOAuthAuthorizationServerOptions(bool refreshTokens = false)
+        public OAuthSAML2AuthorizationServerOptions(bool refreshTokens = false)
         {
             TokenEndpointPath = new PathString("/oauth/token");
             Provider = new OAuthSAML2GrantFlowProvider();
