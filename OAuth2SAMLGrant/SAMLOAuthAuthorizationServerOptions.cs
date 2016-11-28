@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.Owin;
+using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace OAuth2SAMLGrant
             AllowInsecureHttp = Convert.ToBoolean(_allowInsecureHttp);
             if (refreshTokens)
             {
-                RefreshTokenProvider = new SingleUseRefreshTokenProvider();
+               // RefreshTokenProvider = new SingleUseRefreshTokenProvider();
             }
         }
 
@@ -34,7 +35,7 @@ namespace OAuth2SAMLGrant
             AllowInsecureHttp = Convert.ToBoolean(_allowInsecureHttp);
             if (refreshTokens)
             {
-                RefreshTokenProvider = new SingleUseRefreshTokenProvider();
+                //RefreshTokenProvider = new SingleUseRefreshTokenProvider();
             }
         }
     }
