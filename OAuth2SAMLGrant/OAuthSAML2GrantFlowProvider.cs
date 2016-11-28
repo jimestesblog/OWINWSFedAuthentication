@@ -1,7 +1,10 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +43,8 @@ namespace OAuth2SAMLGrant
             //        return true;
             //}
 
-            //return false;
+            return false;
+
         }
 
         public override Task GrantCustomExtension(OAuthGrantCustomExtensionContext context)
@@ -52,7 +56,7 @@ namespace OAuth2SAMLGrant
             //decode base64 string
             string assertion = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(encAssertion));
 
-            SAML2Validator smv = new SAML2Validator();
+            SAML.TokenValidator smv = new SAML.TokenValidator();
             ClaimsIdentity cid = new ClaimsIdentity();
             try
             {
