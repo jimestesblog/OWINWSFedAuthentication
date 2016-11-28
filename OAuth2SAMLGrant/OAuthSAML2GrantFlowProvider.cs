@@ -74,7 +74,7 @@ namespace OAuth2SAMLGrant
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
-            // Add logic to add custom claims to returned token
+            // TODO:logic to add custom claims to returned token
             ClaimsIdentity x = context.Identity;
             return base.TokenEndpoint(context);
         }
