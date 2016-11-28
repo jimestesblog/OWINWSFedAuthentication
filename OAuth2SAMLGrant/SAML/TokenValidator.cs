@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.IdentityModel;
+using System.IdentityModel.Tokens;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml;
+using System.IdentityModel.Selectors;
 
 namespace OAuth2SAMLGrant.SAML
 {
@@ -15,7 +22,7 @@ namespace OAuth2SAMLGrant.SAML
             string _resourceServerUrl2 = ConfigurationManager.AppSettings["RESOURCESERVERURL"];
             string _encryptionCertThumbprint = ConfigurationManager.AppSettings["ENCRYPTCERTTHUMBPRINT"];
             string _validationCertThumbprint = ConfigurationManager.AppSettings["SIGNCERTTHUMBPRINT"];
-
+            
 
             /// Create and setup the configurations for decrypting and validating
             // the token.
@@ -27,7 +34,7 @@ namespace OAuth2SAMLGrant.SAML
 
             // Load the identity server's certificate's public key
             // to validate the token.
-            X509Certificate2 validatingCert = X509CertificateHelper.GetFromFederationMetaData(_metadataAddress, _validationCertThumbprint, "signing");
+            X509Certificate2 validatingCert = Helpers.X509Certificates.GetFromFederationMetaData(_metadataAddress, _validationCertThumbprint, "signing");
             //new X509Certificate2(HttpContext.Current.Server.MapPath("~\\App_Data\\CertWithPublicKey.cer"));
 
             ConfigurationBasedIssuerNameRegistry inr = new ConfigurationBasedIssuerNameRegistry();
@@ -41,7 +48,7 @@ namespace OAuth2SAMLGrant.SAML
 
             //On of these two lines will work for decrypting token
             //-----------------------------------------------------
-            X509Certificate2 decryptingCert = X509CertificateHelper.GetFromFederationMetaData(_metadataAddress, _encryptionCertThumbprint, "encryption");
+            X509Certificate2 decryptingCert = Helpers.X509Certificates.GetFromFederationMetaData(_metadataAddress, _encryptionCertThumbprint, "encryption");
             //X509Certificate2 decryptingCert = X509CertificateHelper.FindByThumbprint(StoreName.My, StoreLocation.LocalMachine, X509CertificateHelper.GetFromFederationMetaData(_metadataAddress, _encryptionCertThumbprint, "encryption").Thumbprint);
             //-----------------------------------------------------
 
